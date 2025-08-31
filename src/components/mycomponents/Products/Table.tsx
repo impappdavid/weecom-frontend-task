@@ -22,6 +22,7 @@ import {
 
 import EditDialog from "./editDialog";
 import { Skeleton } from "@/components/ui/skeleton";
+import DeleteDialog from "./deleteDialog";
 
 const PRODUCTS_PER_PAGE = 15;
 
@@ -29,6 +30,7 @@ function TableView({ searchTerm }: { searchTerm: string }) {
     const [page, setPage] = useState(1);
     const [editingProduct, setEditingProduct] = useState<Product | null>(null);
     const [isEditDialogOpen, setIsEditDialogOpen] = useState(false);
+    const [isDeleteDialogOpen, setIsDeleteDialogOpen] = useState(false);
 
     useEffect(() => {
         if (page !== 1) setPage(1);
@@ -125,7 +127,11 @@ function TableView({ searchTerm }: { searchTerm: string }) {
                                             <Pencil />
                                         </div>
                                     </Button>
-                                    <Button className="rounded-none cursor-pointer h-7 w-7 md:w-fit" size="sm">
+                                    <Button className="rounded-none cursor-pointer h-7 w-7 md:w-fit" size="sm" 
+                                    onClick={() => {
+                                            setEditingProduct(product);
+                                            setIsDeleteDialogOpen(true);
+                                        }}>
                                         <div className="hidden md:flex">Delete</div>
                                         <div className="flex md:hidden">
                                             <Trash />
@@ -190,6 +196,12 @@ function TableView({ searchTerm }: { searchTerm: string }) {
                 product={editingProduct}
                 open={isEditDialogOpen}
                 onClose={() => setIsEditDialogOpen(false)}
+            />
+
+            <DeleteDialog
+                product={editingProduct}
+                open={isDeleteDialogOpen}
+                onClose={() => setIsDeleteDialogOpen(false)}
             />
         </>
     );

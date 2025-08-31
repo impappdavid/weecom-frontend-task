@@ -112,7 +112,7 @@ export default function EditDialog({ product, open, onClose }: EditDialogProps) 
 
                         <div className="flex gap-2 mt-2">
                             <Button type="submit" className="bg-black text-white rounded-none flex-grow cursor-pointer h-9  hover:bg-black/90" disabled={editProductMutation.isPending}>
-                                Save
+                                {editProductMutation.isPending ? "Editing..." : "Edit Product"}
                             </Button>
                         </div>
                     </form>

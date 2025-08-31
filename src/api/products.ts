@@ -65,3 +65,18 @@ export function useEditProduct() {
     },
   });
 }
+
+export const deleteProduct = async (id: number): Promise<void> => {
+  await axios.delete(`https://dummyjson.com/products/${id}`);
+};
+
+export function useDeleteProduct() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: deleteProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ["products"] });
+    },
+  });
+}
