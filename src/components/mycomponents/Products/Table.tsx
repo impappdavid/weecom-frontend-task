@@ -21,6 +21,7 @@ import {
 
 
 import EditDialog from "./editDialog";
+import { Skeleton } from "@/components/ui/skeleton";
 
 const PRODUCTS_PER_PAGE = 15;
 
@@ -57,25 +58,27 @@ function TableView({ searchTerm }: { searchTerm: string }) {
 
 
 
-   
+
 
     return (
         <>
             <Table className="border border-black">
                 <TableHeader>
                     <TableRow>
-                        <TableHead>Title</TableHead>
-                        <TableHead>Price</TableHead>
-                        <TableHead>Category</TableHead>
-                        <TableHead>Stock</TableHead>
-                        <TableHead className="text-right">Action</TableHead>
+                        <TableHead className="text-xs sm:text-md">Title</TableHead>
+                        <TableHead className="text-xs sm:text-md">Price</TableHead>
+                        <TableHead className="text-xs sm:text-md">Category</TableHead>
+                        <TableHead className="text-xs sm:text-md">Stock</TableHead>
+                        <TableHead className="text-right text-xs sm:text-md">Action</TableHead>
                     </TableRow>
                 </TableHeader>
                 <TableBody>
                     {isLoading && (
                         <TableRow>
-                            <TableCell colSpan={5} className="text-center py-8">
-                                Searching...
+                            <TableCell colSpan={5} className="text-center">
+                                <Skeleton className="h-7 w-full mt-1" />
+                                <Skeleton className="h-7 w-full mt-1" />
+                                <Skeleton className="h-7 w-full mt-1" />
                             </TableCell>
                         </TableRow>
                     )}
@@ -101,14 +104,14 @@ function TableView({ searchTerm }: { searchTerm: string }) {
                         data?.products.length! > 0 &&
                         data?.products.map((product) => (
                             <TableRow key={product.id}>
-                                <TableCell className="font-medium">{product.title}</TableCell>
+                                <TableCell className="font-medium text-xs sm:text-md max-w-24 truncate">{product.title}</TableCell>
                                 <TableCell>
-                                    <div className="w-fit py-1 px-2 bg-green-500/40 text-green-800 font-medium">
+                                    <div className="w-fit py-1 px-2 bg-green-500/40 text-green-800 font-medium text-xs sm:text-md">
                                         ${product.price}
                                     </div>
                                 </TableCell>
-                                <TableCell>{product.category}</TableCell>
-                                <TableCell>{product.stock}</TableCell>
+                                <TableCell className="text-xs sm:text-md max-w-3 truncate">{product.category}</TableCell>
+                                <TableCell className="text-xs sm:text-md">{product.stock}</TableCell>
                                 <TableCell className="text-right flex justify-end gap-2">
                                     <Button
                                         className="bg-transparent rounded-none border border-black text-black hover:bg-black/10 cursor-pointer h-7 w-7 md:w-fit"
@@ -135,9 +138,9 @@ function TableView({ searchTerm }: { searchTerm: string }) {
             </Table>
 
             {data && (
-                <div className="flex justify-between items-center mt-4">
+                <div className="flex justify-between items-center mt-0 sm:mt-4">
                     <div className="flex w-full text-sm text-zinc-600">
-                        Showing {data.products.length} / {data.total}
+                        Showing {data.products.length * page} / {data.total}
                     </div>
                     <div>
                         <Pagination>
