@@ -1,5 +1,4 @@
 import { Menu, User } from "lucide-react"
-import { Button } from "../ui/button"
 import {
     DropdownMenu,
     DropdownMenuContent,
@@ -23,8 +22,8 @@ function Header() {
                 <div className="text-xl hidden lg:flex">Home</div>
                 <Sheet>
                     <SheetTrigger>
-                        <div className="flex lg:hidden rounded-none w-8 h-8">
-                            <Menu />
+                        <div className="flex lg:hidden rounded-none w-8 h-8 bg-black justify-center items-center cursor-pointer text-white">
+                            <Menu className="w-4 h-4"/>
                         </div>
                     </SheetTrigger>
                     <SheetContent className="p-2">
@@ -41,8 +40,8 @@ function Header() {
                 </Sheet>
                 <DropdownMenu>
                     <DropdownMenuTrigger>
-                        <div className="rounded-none p-2 w-8 h-8 cursor-pointer">
-                            <User />
+                        <div className="flex rounded-none w-8 h-8 bg-black justify-center items-center cursor-pointer">
+                            <User className="text-white w-4 h-4"/>
                         </div>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
