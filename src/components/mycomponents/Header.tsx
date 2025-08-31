@@ -23,9 +23,9 @@ function Header() {
                 <div className="text-xl hidden lg:flex">Home</div>
                 <Sheet>
                     <SheetTrigger>
-                        <Button className="flex lg:hidden rounded-none w-8 h-8">
+                        <div className="flex lg:hidden rounded-none w-8 h-8">
                             <Menu />
-                        </Button>
+                        </div>
                     </SheetTrigger>
                     <SheetContent className="p-2">
                         <SheetHeader className="py-2 px-0">
@@ -41,9 +41,9 @@ function Header() {
                 </Sheet>
                 <DropdownMenu>
                     <DropdownMenuTrigger>
-                        <Button className="rounded-none p-2 w-8 h-8 cursor-pointer">
+                        <div className="rounded-none p-2 w-8 h-8 cursor-pointer">
                             <User />
-                        </Button>
+                        </div>
                     </DropdownMenuTrigger>
                     <DropdownMenuContent align="end">
                         <DropdownMenuItem>Profile</DropdownMenuItem>
