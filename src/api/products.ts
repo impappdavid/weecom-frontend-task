@@ -1,7 +1,7 @@
-import { useQuery, useMutation, useQueryClient, keepPreviousData } from '@tanstack/react-query';
+import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
 import axios from 'axios';
 
-interface Product {
+export interface Product {
   id: number;
   title: string;
   price: number;
@@ -30,5 +30,38 @@ export function useProducts(page: number, searchTerm: string) {
     queryKey: ['products', page, searchTerm],
     queryFn: () => getAllProducts(page, searchTerm, limit),
     staleTime: 5 * 60 * 1000,
+  });
+}
+
+export const addProduct = async (newProduct: Omit<Product, 'id'>): Promise<Product> => {
+  const response = await axios.post<Product>('https://dummyjson.com/products/add', newProduct);
+  return response.data;
+};
+
+export function useAddProduct() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: addProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['products'] });
+    },
+  });
+}
+
+export const editProduct = async (updatedProduct: Product): Promise<Product> => {
+  const { id, ...data } = updatedProduct;
+  const response = await axios.put<Product>(`https://dummyjson.com/products/${id}`, data);
+  return response.data;
+};
+
+export function useEditProduct() {
+  const queryClient = useQueryClient();
+
+  return useMutation({
+    mutationFn: editProduct,
+    onSuccess: () => {
+      queryClient.invalidateQueries({ queryKey: ['products'] });
+    },
   });
 }
