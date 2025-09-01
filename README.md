@@ -15,9 +15,6 @@ A CRUD product management dashboard built with **React**, **TypeScript**, **Vite
 
 ## Screenshots
 
-> Replace these links with your actual images or GIFs  
-> (e.g. `/screenshots/table.png`, `/screenshots/add.gif`)
-
 **Home:**
 ![Product Table](/screenshots/home.png)
 
