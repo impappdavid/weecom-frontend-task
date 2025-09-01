@@ -110,6 +110,7 @@ function Filter({ searchTerm, setSearchTerm }: FilterProps) {
                   <Input
                     type="number"
                     placeholder="Price"
+                    step={0.01}
                     className="w-full rounded-none border-black"
                     value={price}
                     onChange={(e) =>

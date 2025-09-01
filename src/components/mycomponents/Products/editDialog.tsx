@@ -83,8 +83,10 @@ export default function EditDialog({ product, open, onClose }: EditDialogProps) 
                             onChange={(e) => setTitle(e.target.value)}
                             required
                         />
+
                         <Input
                             type="number"
+                            step={0.01}
                             placeholder="Price"
                             className="w-full rounded-none border-black"
                             value={price}
