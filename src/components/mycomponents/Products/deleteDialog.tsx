@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogDescription } from "@/components/ui/dialog";
-import { Input } from "@/components/ui/input";
 import { Button } from "@/components/ui/button";
 import type { Product } from "@/api/products";
-import { useDeleteProduct, useEditProduct } from "@/api/products";
+import { useDeleteProduct } from "@/api/products";
 import { X } from "lucide-react";
 import { toast } from "sonner";
 
